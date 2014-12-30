@@ -84,10 +84,4 @@
 /layouts/Sample layout.aspx
 /layouts/Sample Sublayout.ascx
 /layouts/xmlcontrol.aspx
-/Partenamut.BOL/bin
-/Partenamut.Web/bin
-/Partenamut.BOL/obj
-/Partenamut.Web/obj
-Partenamut.Web/Properties/PublishProfiles/Nele.pubxml.user
-Partenamut.v11.suo
 _Dependencies/
