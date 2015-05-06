@@ -3,7 +3,7 @@
 
     if (!$) {
         var jq = document.createElement('script'); jq.type = 'text/javascript';
-        jq.src = '/js/jquery-1.11.2.min.js';
+        jq.src = '/sitecore modules/Web/WFFM Extension/jquery-1.11.2.min.js';
         document.getElementsByTagName('head')[0].appendChild(jq);
 
         jq.onload = function () {

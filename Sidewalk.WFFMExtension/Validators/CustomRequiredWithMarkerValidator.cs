@@ -1,5 +1,4 @@
 ﻿using Sidewalk.WFFMExtension.Helpers;
-using Sidewalk.WFFMExtension.Resources;
 using Sitecore.Form.Validators;
 
 namespace Sidewalk.WFFMExtension.Validators
