@@ -1,7 +1,7 @@
 (function ($) {
 
 
-    if (!$) {
+    function addjQueryAndInit() {
         var jq = document.createElement('script'); jq.type = 'text/javascript';
         jq.src = '/sitecore modules/Web/WFFM Extension/jquery-1.11.2.min.js';
         document.getElementsByTagName('head')[0].appendChild(jq);
@@ -12,11 +12,20 @@
                 init();
             });
         };
+    }
 
-    } else {
-        $(window).load(function () {
-            init();
-        });
+    if (!$) {
+        addjQueryAndInit();
+    }
+    else {
+        var version = jQuery.fn.jquery.split('.').join('');
+        if (parseInt(version) <= 151 || !$) {
+            addjQueryAndInit();
+        } else {
+            $(window).load(function () {
+                init();
+            });
+        }
     }
 
 
