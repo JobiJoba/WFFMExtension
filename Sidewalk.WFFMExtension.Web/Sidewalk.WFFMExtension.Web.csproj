@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\SC7.pubxml" />
     <None Include="Properties\PublishProfiles\Sc8.pubxml" />
   </ItemGroup>
   <ItemGroup>

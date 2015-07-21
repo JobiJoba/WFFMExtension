@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>http://LolliAndPeup/</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>10/02/2013 12:10:10</publishTime>
+    </File>
+    <File Include="bin/Sidewalk.WFFMExtension.dll">
+      <publishTime>07/21/2015 18:40:01</publishTime>
+    </File>
+    <File Include="bin/Sidewalk.WFFMExtension.pdb">
+      <publishTime>07/21/2015 18:40:01</publishTime>
+    </File>
+    <File Include="bin/Sidewalk.WFFMExtension.Web.dll">
+      <publishTime>07/21/2015 18:42:22</publishTime>
+    </File>
+    <File Include="bin/Sidewalk.WFFMExtension.Web.pdb">
+      <publishTime>07/21/2015 18:42:22</publishTime>
+    </File>
+    <File Include="bin/Sitecore.Forms.Core.dll">
+      <publishTime>12/04/2014 18:47:29</publishTime>
+    </File>
+    <File Include="bin/Sitecore.Forms.Custom.dll">
+      <publishTime>12/04/2014 18:47:29</publishTime>
+    </File>
+    <File Include="bin/Sitecore.Kernel.dll">
+      <publishTime>05/26/2014 18:41:26</publishTime>
+    </File>
+    <File Include="sitecore modules/Web/WFFM Extension/wffmExtension.js">
+      <publishTime>07/21/2015 18:31:35</publishTime>
+    </File>
+    <File Include="WebServices/EvaluateConditions.asmx">
+      <publishTime>07/13/2015 12:38:48</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
