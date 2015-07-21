@@ -31,21 +31,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
-    <Reference Include="Sitecore.ExperienceEditor">
-      <HintPath>..\_Dependencies\Sitecore.ExperienceEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Forms.Core">
-      <HintPath>..\_Dependencies\Sitecore.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Forms.Custom">
-      <HintPath>..\_Dependencies\Sitecore.Forms.Custom.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Forms.Mvc">
-      <HintPath>..\_Dependencies\Sitecore.Forms.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Forms.Core, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\_Dependencies\SC7\Sitecore.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Forms.Custom, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\SC7\Sitecore.Forms.Custom.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Forms.Mvc, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\SC7\Sitecore.Forms.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Kernel, Version=8.0.5138.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\SC7\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

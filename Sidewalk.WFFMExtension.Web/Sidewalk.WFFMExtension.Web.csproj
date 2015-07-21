@@ -39,13 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Sitecore.Forms.Core, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Forms.Core, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\Sitecore.Forms.Core.dll</HintPath>
+      <HintPath>..\_Dependencies\SC7\Sitecore.Forms.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Kernel, Version=8.0.5138.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\_Dependencies\SC7\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -65,11 +65,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-   
     <None Include="Properties\PublishProfiles\Sc8.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    
     <Content Include="sitecore modules\Web\WFFM Extension\wffmExtension.js" />
     <Content Include="WebServices\EvaluateConditions.asmx" />
   </ItemGroup>
