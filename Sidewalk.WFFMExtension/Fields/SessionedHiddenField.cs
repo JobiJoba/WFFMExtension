@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Sitecore.Form.Core.Attributes;
+using Sitecore.Form.Core.Utility;
+using Sitecore.Form.Core.Visual;
+using Sitecore.Form.Web.UI.Controls;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using Sitecore.Form.Core.Attributes;
-using Sitecore.Form.Core.Utility;
-using Sitecore.Form.Core.Visual;
-using Sitecore.Form.Web.UI.Controls;
 
 namespace Sidewalk.WFFMExtension.Fields
 {
