@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Sidewalk.WFFMExtension.Helpers;
-using Sidewalk.WFFMExtension.Resources;
 using Sitecore.Form.Core.Attributes;
 using Sitecore.Form.Core.Visual;
 

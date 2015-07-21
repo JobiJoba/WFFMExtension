@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using Sidewalk.WFFMExtension.Helpers;
-using Sidewalk.WFFMExtension.Resources;
+﻿using Sidewalk.WFFMExtension.Helpers;
 using Sitecore.Form.Core.Attributes;
 using Sitecore.Form.Core.Visual;
+using System;
+using System.ComponentModel;
 
 namespace Sidewalk.WFFMExtension.Fields
 {

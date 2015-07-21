@@ -65,9 +65,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\joba.pubxml" />
+   
+    <None Include="Properties\PublishProfiles\Sc8.pubxml" />
   </ItemGroup>
   <ItemGroup>
+    
     <Content Include="sitecore modules\Web\WFFM Extension\wffmExtension.js" />
     <Content Include="WebServices\EvaluateConditions.asmx" />
   </ItemGroup>
