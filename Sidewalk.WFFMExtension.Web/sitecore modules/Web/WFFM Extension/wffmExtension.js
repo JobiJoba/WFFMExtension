@@ -94,12 +94,12 @@ function callWs(id, selectedVal) {
                     if (hideControl) {
                         for (var z = 0; z < validatorsSection.length; z++) {
                             window.ValidatorEnable(validatorsSection[z], false);
-                            validatorsField[j].style.visibility = 'hidden';
+                            validatorsSection[z].style.visibility = 'hidden';
                         }
                     } else {
                         for (var z = 0; z < validatorsSection.length; z++) {
                             window.ValidatorEnable(validatorsSection[z], true);
-                            validatorsField[j].style.visibility = 'visible';
+                            validatorsSection[z].style.visibility = 'visible';
                         }
                     }
                     if (hideControl) {

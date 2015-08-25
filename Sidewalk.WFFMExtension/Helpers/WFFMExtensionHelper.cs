@@ -1,4 +1,5 @@
 ﻿using Sidewalk.WFFMExtension.Resources;
+using Sitecore.Diagnostics;
 using Sitecore.Form.Core.Utility;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,7 @@ namespace Sidewalk.WFFMExtension.Helpers
         /// <returns></returns>
         public static string GetValueAndSet(string id, string sessionName, ListItemCollection selectedValueFromComponent)
         {
+            Assert.IsNotNullOrEmpty(sessionName, "Session name cannot be empty");
             string selectedValue;
             var key = HttpContext.Current.Request.Form.AllKeys.FirstOrDefault(o => o.Contains(id));
             if (key != null)
@@ -84,11 +86,15 @@ namespace Sidewalk.WFFMExtension.Helpers
 
             var findValidControls = FindValidControls(webControl);
 
-            var fieldStyle = ((WebControl)findValidControls).Style.Value;
-
-            if (!string.IsNullOrWhiteSpace(fieldStyle) && fieldStyle.Contains("display:none;"))
+            var findedWebControl = ((WebControl)findValidControls);
+            if (findedWebControl != null)
             {
-                isDisplayNone = true;
+                var fieldStyle = findedWebControl.Style.Value;
+
+                if (!string.IsNullOrWhiteSpace(fieldStyle) && fieldStyle.Contains("display:none;"))
+                {
+                    isDisplayNone = true;
+                }
             }
 
             return isDisplayNone;
