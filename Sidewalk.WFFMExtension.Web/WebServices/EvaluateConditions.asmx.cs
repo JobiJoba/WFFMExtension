@@ -76,38 +76,41 @@ namespace Sidewalk.WFFMExtension.Web.WebServices
 
                     foreach (Rule<RuleContext> rule in rules)
                     {
-                        if (rule.Condition != null && rule.Condition.GetType().Name.Contains("ConditionalHide"))
+                        // Adding selectedValue every time so condition gets value,
+                        // also when AND-condition or OR-condition added by user in Rule Editor.
+                        // Since AND-condition or OR-condition puts Custom Conditions in nesting object hierarchy
+                        ruleContext.Parameters.Add("selectedValue", selectedValue);
+                        RuleStack stack = new RuleStack();
+                        rule.Condition.Evaluate(ruleContext, stack);
+
+                        if (ruleContext.IsAborted)
                         {
-                            RuleStack stack = new RuleStack();
-                            ruleContext.Parameters.Add("selectedValue", selectedValue);
-                            rule.Condition.Evaluate(ruleContext, stack);
+                            continue;
+                        }
+                        
+                        string fieldClass = fieldItem.Name;
+                        ControlType controlType = fieldItem.TemplateID == Constants.WffmSectionTemplateId ? ControlType.Section : ControlType.Field;
 
-                            if (ruleContext.IsAborted)
+                        if (controlType == ControlType.Section)
+                        {
+                            Item firstCildItem = fieldItem.Children.FirstOrDefault();
+                            if (firstCildItem != null)
                             {
-                                continue;
+                                fieldClass = firstCildItem.Name;
                             }
+                        }
+                        
+                        if (rule.Condition.GetType() == typeof(ConditionalHide<RuleContext>))
+                        {
+                            ConditionalHide<RuleContext> condHide = (ConditionalHide<RuleContext>)rule.Condition;
+                            SessionUtil.SetSessionValue(condHide.SessionVariable, selectedValue);
+                        }
 
-
-                            string fieldClass = fieldItem.Name;
-                            ControlType controlType = fieldItem.TemplateID == Constants.WffmSectionTemplateId ? ControlType.Section : ControlType.Field;
-
-                            if (controlType == ControlType.Section)
-                            {
-                                Item firstCildItem = fieldItem.Children.FirstOrDefault();
-                                if (firstCildItem != null)
-                                {
-                                    fieldClass = firstCildItem.Name;
-                                }
-                            }
-
-
-                            if (rule.Condition.GetType() == typeof(ConditionalHide<RuleContext>))
-                            {
-                                ConditionalHide<RuleContext> condHide = (ConditionalHide<RuleContext>)rule.Condition;
-                                SessionUtil.SetSessionValue(condHide.SessionVariable, selectedValue);
-                            }
-
-                            actions.Add(new ActionResponse { ControlType = controlType, CssClassSelector = fieldClass.Replace(" ", "+"), HideControl = (stack.Count != 0) && ((bool)stack.Pop()) });
+                        var resultFromConditionExecution = (stack.Count != 0) && ((bool)stack.Pop());
+                        actions.Add(new ActionResponse { ControlType = controlType, CssClassSelector = fieldClass.Replace(" ", "+"), HideControl = resultFromConditionExecution });
+                        if (resultFromConditionExecution)
+                        {
+                            rule.Execute(ruleContext);
                         }
                     }
                 }

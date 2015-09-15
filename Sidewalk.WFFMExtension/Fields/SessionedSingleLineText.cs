@@ -9,14 +9,14 @@ using System.Web.UI;
 
 namespace Sidewalk.WFFMExtension.Fields
 {
-    public class SessionedSigneLineText : Sitecore.Form.Web.UI.Controls.SingleLineText
+    public class SessionedSingleLineText : Sitecore.Form.Web.UI.Controls.SingleLineText
     {
-        public SessionedSigneLineText()
+        public SessionedSingleLineText()
             : this(HtmlTextWriterTag.Div)
         {
         }
 
-        public SessionedSigneLineText(HtmlTextWriterTag tag)
+        public SessionedSingleLineText(HtmlTextWriterTag tag)
             : base(tag)
         {
         }
