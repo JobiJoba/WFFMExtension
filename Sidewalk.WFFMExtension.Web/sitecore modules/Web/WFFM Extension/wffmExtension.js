@@ -19,6 +19,7 @@ function init() {
     $scw('.js-onchange').bind('change', function () {
 
         var el = $scw(this);
+        var sessionName = el.attr('data-sessionname');
         var id = el.attr('id');
         var selectedValue = el.val();
         if (selectedValue === '') {
@@ -39,23 +40,23 @@ function init() {
             if (value !== '') {
                 value = value.slice(0, -1);
             }
-            callWs(id, value);
+            callWs(id, value,sessionName);
         } else if (el.attr("type") === "radio") {
-            callWs(id, el.val());
+            callWs(id, el.val(), sessionName);
         }
         else {
-            callWs(id, selectedValue);
+            callWs(id, selectedValue, sessionName);
         }
     });
 }
 
-function callWs(id, selectedVal) {
+function callWs(id, selectedVal, sessionName) {
     var isNormalPageMode = IsNormalPageMode();
     $scw.ajax({
         url: "/Webservices/EvaluateConditions.asmx/GetActions",
         type: "POST",
         dataType: "json",
-        data: JSON.stringify({ id: id, selectedValue: selectedVal, pageMode: isNormalPageMode }),
+        data: JSON.stringify({ id: id, selectedValue: selectedVal, pageMode: isNormalPageMode, sessionName: sessionName }),
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             var actions = data.d;

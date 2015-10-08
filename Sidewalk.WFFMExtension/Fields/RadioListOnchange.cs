@@ -26,7 +26,7 @@ namespace Sidewalk.WFFMExtension.Fields
 
 
 
-     
+
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
@@ -34,8 +34,9 @@ namespace Sidewalk.WFFMExtension.Fields
             foreach (ListItem button in buttonList.Items)
             {
                 button.Attributes.Add("class", "js-onchange");
+                button.Attributes.Add("data-sessionname", SessionName);
             }
-            string selectedValue =  WFFMExtensionHelper.GetValueAndSet(ID, SessionName, SelectedValue);
+            string selectedValue = WFFMExtensionHelper.GetValueAndSet(ID, SessionName, SelectedValue);
 
             buttonList.SelectedIndex =
             buttonList.Items.IndexOf(buttonList.Items.FindByValue(selectedValue));

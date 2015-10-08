@@ -18,6 +18,8 @@ namespace Sidewalk.WFFMExtension.Fields
             base.OnInit(e);
 
             droplist.CssClass = "scfDropList js-onchange";
+            droplist.Attributes.Add("data-sessionname", SessionName);
+
             string selectedValue = WFFMExtensionHelper.GetValueAndSet(ID, SessionName, SelectedValue);
 
             droplist.SelectedIndex =

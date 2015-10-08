@@ -36,7 +36,7 @@ namespace Sidewalk.WFFMExtension.Web.WebServices
 
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public List<ActionResponse> GetActions(string id, string selectedValue, bool pageMode)
+        public List<ActionResponse> GetActions(string id, string selectedValue, bool pageMode, string sessionName)
         {
 
             string[] splittedId = id.Split('_');
@@ -49,11 +49,14 @@ namespace Sidewalk.WFFMExtension.Web.WebServices
                 }
             }
 
+
+
             Item form = GetDatabase(pageMode).GetItem(new ID(splittedId[arrayId]));
-            return GetActionResponses(form, selectedValue);
+            return GetActionResponses(form, selectedValue, sessionName);
+
         }
 
-        private List<ActionResponse> GetActionResponses(Item rootItem, string selectedValue)
+        private List<ActionResponse> GetActionResponses(Item rootItem, string selectedValue, string sessionName)
         {
             List<ActionResponse> actions = new List<ActionResponse>();
 
@@ -78,36 +81,42 @@ namespace Sidewalk.WFFMExtension.Web.WebServices
                     {
                         if (rule.Condition != null && rule.Condition.GetType().Name.Contains("ConditionalHide"))
                         {
-                            RuleStack stack = new RuleStack();
-                            ruleContext.Parameters.Add("selectedValue", selectedValue);
-                            rule.Condition.Evaluate(ruleContext, stack);
-
-                            if (ruleContext.IsAborted)
+                            var ruleConditionalHide =
+                                ((Sidewalk.WFFMExtension.Rules.ConditionalHide<Sitecore.Rules.RuleContext>)
+                                    rule.Condition);
+                            if (ruleConditionalHide.SessionVariable == sessionName)
                             {
-                                continue;
-                            }
+                                RuleStack stack = new RuleStack();
+                                ruleContext.Parameters.Add("selectedValue", selectedValue);
+                                rule.Condition.Evaluate(ruleContext, stack);
 
-
-                            string fieldClass = fieldItem.Name;
-                            ControlType controlType = fieldItem.TemplateID == Constants.WffmSectionTemplateId ? ControlType.Section : ControlType.Field;
-
-                            if (controlType == ControlType.Section)
-                            {
-                                Item firstCildItem = fieldItem.Children.FirstOrDefault();
-                                if (firstCildItem != null)
+                                if (ruleContext.IsAborted)
                                 {
-                                    fieldClass = firstCildItem.Name;
+                                    continue;
                                 }
+
+
+                                string fieldClass = fieldItem.Name;
+                                ControlType controlType = fieldItem.TemplateID == Constants.WffmSectionTemplateId ? ControlType.Section : ControlType.Field;
+
+                                if (controlType == ControlType.Section)
+                                {
+                                    Item firstCildItem = fieldItem.Children.FirstOrDefault();
+                                    if (firstCildItem != null)
+                                    {
+                                        fieldClass = firstCildItem.Name;
+                                    }
+                                }
+
+
+                                if (rule.Condition.GetType() == typeof(ConditionalHide<RuleContext>))
+                                {
+                                    ConditionalHide<RuleContext> condHide = (ConditionalHide<RuleContext>)rule.Condition;
+                                    SessionUtil.SetSessionValue(condHide.SessionVariable, selectedValue);
+                                }
+
+                                actions.Add(new ActionResponse { ControlType = controlType, CssClassSelector = fieldClass.Replace(" ", "+"), HideControl = (stack.Count != 0) && ((bool)stack.Pop()) });
                             }
-
-
-                            if (rule.Condition.GetType() == typeof(ConditionalHide<RuleContext>))
-                            {
-                                ConditionalHide<RuleContext> condHide = (ConditionalHide<RuleContext>)rule.Condition;
-                                SessionUtil.SetSessionValue(condHide.SessionVariable, selectedValue);
-                            }
-
-                            actions.Add(new ActionResponse { ControlType = controlType, CssClassSelector = fieldClass.Replace(" ", "+"), HideControl = (stack.Count != 0) && ((bool)stack.Pop()) });
                         }
                     }
                 }

@@ -35,6 +35,7 @@ namespace Sidewalk.WFFMExtension.Fields
             foreach (ListItem button in buttonList.Items)
             {
                 button.Attributes.Add("class", "js-onchange");
+                button.Attributes.Add("data-sessionname", SessionName);
             }
 
             var selectedValue = WFFMExtensionHelper.GetValueAndSet(ID, SessionName, items);

@@ -25,7 +25,7 @@ namespace Sidewalk.WFFMExtension.Fields
         [VisualFieldType(typeof(EditField)), VisualProperty("Session variable name", 1), DefaultValue("Session variable name")]
         public string SessionName { get; set; }
 
-       
+
 
 
         protected override void OnInit(EventArgs e)
