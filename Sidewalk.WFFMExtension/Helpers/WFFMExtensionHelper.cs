@@ -140,7 +140,7 @@ namespace Sidewalk.WFFMExtension.Helpers
             {
                 return control;
             }
-            return FindValidControls(control.Parent);
+            return FindValidControlsForSection(control.Parent);
         }
     }
 }
